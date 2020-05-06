@@ -1,19 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <file-pond-uploader />
+    <uppy-uploader />
+    <uploader :currentUpload="currentUpload" @image-uploaded="uploaded"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Uploader from "@/components/Uploader.vue";
+import UppyUploader from "@/components/UppyUploader.vue";
+import FilePondUploader from "@/components/FilePondUploader.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    FilePondUploader,
+    Uploader,
+    UppyUploader
+  },
+  data() {
+    return {
+      currentUpload: null,
+    };
+  },
+  methods: {
+    uploaded({ image }) {
+      this.currentUpload = image;
+    }
+  },
+};
 </script>
 
 <style>
