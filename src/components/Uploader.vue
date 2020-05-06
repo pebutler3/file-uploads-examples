@@ -1,5 +1,6 @@
 <template>
   <div class="uploader">
+    <h2>No Framework</h2>
     <input type="file" @change="fileselected" />
     <img v-if="currentUpload" :src="currentUpload" width="auto" />
   </div>
