@@ -1,5 +1,6 @@
 <template>
   <div class="grid">
+    <h2><a href="https://uppy.io">uppy.io</a></h2>
     <div class="column-full">
       <div class="UppyInput"></div>
       <div class="UppyInput-Progress"></div>
@@ -11,7 +12,7 @@
 import Uppy from "@uppy/core";
 import FileInput from "@uppy/file-input";
 import StatusBar from "@uppy/status-bar";
-import Tus from "@uppy/tus";
+import XHRUpload from "@uppy/xhr-upload";
 import "@uppy/core/dist/style.css";
 import "@uppy/status-bar/dist/style.css";
 import "@uppy/file-input/dist/style.css";
@@ -27,10 +28,12 @@ const uppy = new Uppy({
   //   minNumberOfFiles: null,
   //   allowedFileTypes: null
   // },
-  // meta: {},
-  onBeforeFileAdded: (currentFile) => {
-    return currentFile;
+  meta: {
+    filename: "test"
   },
+  onBeforeFileAdded: currentFile => {
+    return currentFile;
+  }
   // locale: {}
 });
 
@@ -38,9 +41,8 @@ export default {
   name: "UppyUploader",
   mounted() {
     uppy.use(FileInput, { target: ".UppyInput", pretty: true });
-    uppy.use(Tus, {
-      endpoint: "https://master.tus.io/files/",
-      limit: 1
+    uppy.use(XHRUpload, {
+      endpoint: "",
     });
     uppy.use(StatusBar, {
       target: ".UppyInput-Progress",
@@ -52,4 +54,7 @@ export default {
 </script>
 
 <style>
+.uppy-Root {
+  text-align: center;
+}
 </style>

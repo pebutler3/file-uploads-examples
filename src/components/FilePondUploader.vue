@@ -1,12 +1,13 @@
 <template>
   <div>
+    <h2><a href="https://github.com/pqina/vue-filepond">Vue FilePond</a></h2>
     <!-- ADD server attribute to <FilePond> e.g. http://localhost:8080/api -->
     <!-- I used https://beeceptor.com -->
     <FilePond
       ref="pond"
-      server=""
+      server="https://pbkills.free.beeceptor.com"
       :files="myFiles"
-      @change="handleFilePondInit()"
+      @change="handleFilePondInit"
     />
   </div>
 </template>
@@ -35,7 +36,7 @@ export default {
       console.log("FilePond has initialized");
 
       // example of instance method call on pond reference
-      this.myFiles.push(this.$refs.pond.getFiles());
+      return this.$refs.pond.getFiles();
     }
   }
 };
