@@ -2,19 +2,19 @@
   <div id="app">
     <input type="file" accept="application/pdf, image/*" v-on:change="onFileChange">
     <div v-show="isLoading">Loading</div>
-    <!-- <div v-for="image in images" v-bind:key="image">
+    <div v-for="image in images" v-bind:key="image">
       <img v-bind:src="image">
-    </div> -->
+    </div>
     <!-- <file-pond-uploader />
     <uppy-uploader /> -->
     <uploader :currentUpload="currentUpload" @image-uploaded="uploaded" />
     <!-- <cropper :currentUpload="currentUpload" /> -->
-    <cropper
+    <!-- <cropper
       class="cropper"
       ref="cropper"
       :src="currentUpload"
       :stencilProps="{ aspectRatio: 10/12 }"
-    ></cropper>
+    ></cropper> -->
     <button @click="crop()">
       CROP
       <span>&#x2316;</span>
@@ -27,13 +27,13 @@
 import Uploader from "@/components/Uploader.vue";
 // import UppyUploader from "@/components/UppyUploader.vue";
 // import FilePondUploader from "@/components/FilePondUploader.vue";
-import { Cropper } from "vue-advanced-cropper";
+// import { Cropper } from "vue-advanced-cropper";
 import Pdf2Image from './pdf';
 
 export default {
   name: "App",
   components: {
-    Cropper,
+    // Cropper,
     // FilePondUploader,
     Uploader,
     // UppyUploader
@@ -43,6 +43,7 @@ export default {
       currentUpload: null,
       currentUploadType: null,
       isLoading: false,
+      images: [],
     };
   },
   computed: {
@@ -63,25 +64,26 @@ export default {
           const pdf2image = await Pdf2Image.open(url);
           // const images = await pdf2image.getAllImageDataUrl({scale:2.0});
           const images = await pdf2image.getAllImageDataUrl({ width: 400, height: 400 });
-          this.currentUpload = images[0];
+          // this.currentUpload = images[0];
+          this.images = images;
         } catch (error) {
           console.log(error);
         }
       } else {
-        console.log('shiiit')
+        console.log('please upload a pdf')
       }
       this.isLoading = false;
     },
     uploaded({ image }) {
       this.currentUpload = image;
     },
-    crop() {
-      const { coordinates, canvas } = this.$refs.cropper.getResult()
-			this.coordinates = coordinates
-			// You able to do different manipulations at a canvas
-      // but there we just get a cropped image
-			this.currentUpload = canvas.toDataURL("image/png", 1.0)
-    }
+    // crop() {
+    //   const { coordinates, canvas } = this.$refs.cropper.getResult()
+		// 	this.coordinates = coordinates
+		// 	// You able to do different manipulations at a canvas
+    //   // but there we just get a cropped image
+		// 	this.currentUpload = canvas.toDataURL("image/png", 1.0)
+    // }
   },
   mounted() {
     // console.log(pdfjs);
