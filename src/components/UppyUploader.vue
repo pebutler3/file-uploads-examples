@@ -42,7 +42,7 @@ export default {
   mounted() {
     uppy.use(FileInput, { target: ".UppyInput", pretty: true });
     uppy.use(XHRUpload, {
-      endpoint: "",
+      endpoint: "https://pbkills.free.beeceptor.com",
     });
     uppy.use(StatusBar, {
       target: ".UppyInput-Progress",

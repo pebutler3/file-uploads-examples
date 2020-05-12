@@ -14,8 +14,10 @@
     "@uppy/xhr-upload": "^1.5.10",
     "core-js": "^3.6.4",
     "filepond": "^4.13.5",
-    "npm": "^6.14.5",
+    "pdfjs": "^2.3.6",
+    "pdfjs-dist": "^2.3.200",
     "vue": "^2.6.11",
+    "vue-advanced-cropper": "^0.16.3",
     "vue-filepond": "^6.0.2"
   },
   "devDependencies": {

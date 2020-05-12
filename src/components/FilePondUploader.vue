@@ -5,7 +5,7 @@
     <!-- I used https://beeceptor.com -->
     <FilePond
       ref="pond"
-      server=""
+      server="https://pbkills.free.beeceptor.com"
       :files="myFiles"
       @change="handleFilePondInit"
     />
